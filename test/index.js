@@ -1,3 +1,5 @@
-// load all specs for testing
+// load all tests for testing
 
 require('./carTest');
+require('./truckTest');
+require('./motorcycleTest');

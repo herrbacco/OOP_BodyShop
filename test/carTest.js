@@ -8,7 +8,7 @@ var Car = require('../src/Car');
 // //// TEST PHASE 1 /////////////////////////////////////////
 
 // test constructor
-console.log('Testing Constructor');
+console.log('Testing Car Constructor');
 var myCar = new Car('Acura', 'Integra', 1999, 'Red', 4);
 assert.strictEqual(myCar.make, 'Acura', 'Constructor did not set make.');
 assert.strictEqual(myCar.model, 'Integra', 'Constructor did not set model.');
@@ -80,16 +80,16 @@ success();
 console.log('Testing picking up a passenger');
 assert.equal(typeof(myCar.pickUp), 'function', 'there is no pickUp function');
 assert.strictEqual(typeof(myCar.pickUp()), 'boolean', 'pickUp function did not return a boolean value');
-assert.strictEqual(myCar.pickUp('Sanda'), false, 'Car did allowed picking up a passenger while NOT running (returned true).');
+assert.strictEqual(myCar.pickUp('Randall'), false, 'Car did allowed picking up a passenger while NOT running (returned true).');
 myCar.start();
-assert.strictEqual(myCar.pickUp('Sanda'), true, 'Car did not allow picking up a passenger (returned false).');
-assert.deepEqual(myCar.passengers, ['Anil', 'Sarah', 'Sanda'], "Passengers array not updated. Expected ['Anil','Sarah','Sanda']");
+assert.strictEqual(myCar.pickUp('Randall'), true, 'Car did not allow picking up a passenger (returned false).');
+assert.deepEqual(myCar.passengers, ['Anil', 'Sarah', 'Randall'], "Passengers array not updated. Expected ['Anil','Sarah','Randall']");
 success();
 
 // test pickUp
 console.log('Testing seat limit');
 assert.strictEqual(myCar.pickUp('Jane Doe'), false, 'Car allowed picking up a passenger despite all seats being filled.');
-assert.deepEqual(myCar.passengers, ['Anil', 'Sarah', 'Sanda'], "Passengers array updated despite all seats being filled. Expected ['Anil','Sarah','Sanda']");
+assert.deepEqual(myCar.passengers, ['Anil', 'Sarah', 'Randall'], "Passengers array updated despite all seats being filled. Expected ['Anil','Sarah','Randall']");
 success();
 
 // test dropOff
@@ -98,19 +98,19 @@ assert.equal(typeof(myCar.dropOff), 'function', 'there is no dropOff function');
 var badDrop = myCar.dropOff('NotInTheCar');
 assert.strictEqual(typeof(badDrop), 'boolean', 'dropOff function did not return a boolean value');
 assert.strictEqual(badDrop, false, 'Car allowed drop-off despite passenger not being in the car. (returned true)');
-assert.deepEqual(myCar.passengers, ['Anil', 'Sarah', 'Sanda'], "Passengers array updated despite being called with an invalid passenger. Expected ['Anil','Sarah','Sanda']");
+assert.deepEqual(myCar.passengers, ['Anil', 'Sarah', 'Randall'], "Passengers array updated despite being called with an invalid passenger. Expected ['Anil','Sarah','Randall']");
 myCar.off();
 assert.strictEqual(myCar.dropOff('Anil'), false, 'Car allowed dropping off a passenger when the car was off.');
-assert.deepEqual(myCar.passengers, ['Anil', 'Sarah', 'Sanda'], "Passengers array updated despite car being off. Expected ['Anil','Sarah','Sanda']");
+assert.deepEqual(myCar.passengers, ['Anil', 'Sarah', 'Randall'], "Passengers array updated despite car being off. Expected ['Anil','Sarah','Randall']");
 myCar.start();
 assert.strictEqual(myCar.dropOff('Anil'), true, 'Car did NOT allow dropping off up a passenger when the car was running.');
-assert.deepEqual(myCar.passengers, ['Sarah', 'Sanda'], "Passengers array not updated. Expected ['Anil','Sarah','Sanda','Aaron']");
+assert.deepEqual(myCar.passengers, ['Sarah', 'Randall'], "Passengers array not updated. Expected ['Anil','Sarah','Randall','Aaron']");
 success();
 
 // test pickUp
 console.log('Testing seat after drop off');
 assert.strictEqual(myCar.pickUp('Jana Doe'), true, 'Car did not allow picking up a passenger after freeing a seat.');
-assert.deepEqual(myCar.passengers, ['Sarah', 'Sanda', 'Jana Doe'], "Passengers array not updated. Expected ['Sarah','Sanda','Jana Doe']");
+assert.deepEqual(myCar.passengers, ['Sarah', 'Randall', 'Jana Doe'], "Passengers array not updated. Expected ['Sarah','Randall','Jana Doe']");
 success();
 
 // testing passenger count
@@ -118,4 +118,4 @@ console.log('Testing passenger count');
 assert.equal(typeof(myCar.passengerCount), 'function', 'there is no passengerCount function');
 assert.strictEqual(typeof(myCar.passengerCount()), 'number', 'passengerCount function did not return a number value');
 assert.strictEqual(myCar.passengerCount(), 3, 'Passenger count seems inaccurate. Expected 3.');
-success('Assignment complete. Congratulations!!\r\n\r\nWelcome to the wild world of OOP (Object Oriented Programming) and TDD (Test Driven Development).');
+success('Your Car is ready. Now it\'s time to implement the Motorcyle and Truck');
